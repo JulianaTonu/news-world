@@ -171,7 +171,7 @@ const displayCategories=(category)=>{
 
 newsCategories()
 
-// loadNews('01');
+loadNews('');
 // loadNews('02');
 // loadNews('03');
 // loadNews('04');

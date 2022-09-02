@@ -1,5 +1,5 @@
 const loadNews =async()=>{
-    const url=`https://openapi.programming-hero.com/api/news/category/01`
+    const url=`https://openapi.programming-hero.com/api/news/category/02`
     const res =await fetch(url)
     const data =await res.json()
     displayNews(data.data)
@@ -120,5 +120,55 @@ const displayNewsDetails =(news)=>{
 </div>
     `
 }
+
+//categories 
+
+const newsCategories =async()=>{
+    const url=` https://openapi.programming-hero.com/api/news/categories`
+    const res =await fetch(url)
+    const data =await res.json()
+    displayCategories(data.data.news_category)
+   
+}
+
+const displayCategories=(category)=>{
+    console.log('category',category)
+// const{category_name} =category
+    category.forEach(newscategory => {
+        console.log('newscategory',newscategory)
+
+        const categoryNews =document.getElementById('news-category')
+        categoryNews.innerHTML=`
+        
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[0].category_name}</a>
+      </li>
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[1].category_name}</a>
+      </li>
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[2].category_name}</a>
+      </li>
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[3].category_name}</a>
+      </li>
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[4].category_name}</a>
+      </li>
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[5].category_name}</a>
+      </li>
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[6].category_name}</a>
+      </li>
+        <li  class="nav-item px-4">
+        <a class="nav-link active" href="#">${category[7].category_name}</a>
+      </li>
+        `
+    });
+    
+}
+
+newsCategories()
 
 loadNews('');

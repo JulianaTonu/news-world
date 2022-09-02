@@ -13,7 +13,7 @@ const newsContainer =document.getElementById('news-container')
 news.forEach(mynews => {
     console.log(mynews)
 
-const {title, thumbnail_url,details,total_view}=mynews
+const {title, thumbnail_url,details,total_view,_id}=mynews
 const {name,published_date,img} =mynews.author
     const newsDiv =document.createElement('div')
     newsDiv.innerHTML =`
@@ -55,7 +55,7 @@ const {name,published_date,img} =mynews.author
       </div>
     </div>
   </div>
-  <div class="text-center "><button onclick="newsDetails()" class="btn btn-warning px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
+  <div class="text-center "><button onclick="newsDetails('${_id}')" class="btn btn-warning px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
   
 
           </div>
@@ -70,7 +70,29 @@ const {name,published_date,img} =mynews.author
 
 }
 
+const newsDetails =async()=>{
+    const url=` https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a`
+    const res =await fetch(url)
+    const data =await res.json()
+    displayNewsDetails(data.data)
+   
+}
 
+const displayNewsDetails =(news)=>{
+    console.log('mynews',news)
 
+    const modalBody =document.getElementById('modal-body')
+    modalBody.innerHTML=`
+    
+    <div class="card" style="width: 25rem;">
+  <img src="${news[0].image_url}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${news[0].title}</h5>
+    <p class="card-text">${news[0].details.slice(0,300)}..</p>
+    
+  </div>
+</div>
+    `
+}
 
 loadNews('');

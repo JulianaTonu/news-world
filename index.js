@@ -55,7 +55,7 @@ const {name,published_date,img} =mynews.author
       </div>
     </div>
   </div>
-  <div class="text-center "><button onclick="newsDetails()" class="btn btn-warning px-5">Details</button></div>
+  <div class="text-center "><button onclick="newsDetails()" class="btn btn-warning px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
   
 
           </div>
@@ -69,5 +69,8 @@ const {name,published_date,img} =mynews.author
 });
 
 }
+
+
+
 
 loadNews('');

@@ -70,8 +70,8 @@ const {name,published_date,img} =mynews.author
 
 }
 
-const newsDetails =async()=>{
-    const url=` https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a`
+const newsDetails =async(id)=>{
+    const url=` https://openapi.programming-hero.com/api/news/${id}`
     const res =await fetch(url)
     const data =await res.json()
     displayNewsDetails(data.data)
@@ -84,12 +84,38 @@ const displayNewsDetails =(news)=>{
     const modalBody =document.getElementById('modal-body')
     modalBody.innerHTML=`
     
-    <div class="card" style="width: 25rem;">
+    <div class="card p-2" style="width: 30rem;">
   <img src="${news[0].image_url}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">${news[0].title}</h5>
-    <p class="card-text">${news[0].details.slice(0,300)}..</p>
+    <p class="card-text">${news[0].details.slice(0,300)}</p>
     
+    <div class="row">
+    <div class="col ">
+        <div class="row text-left">
+            <div class="col-2">
+                <img src="${news[0].author.img}" class="  author"  alt="...">
+            </div>
+            <div class="col-10">
+                <p>${news[0].author.name ? news[0].author.name :'not found' }</p>
+                <p>${news[0].author.published_date}</p>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    <div class="col">
+        <div class="row">
+        <div class="col d-row">
+        <p>Total views: <span>${news[0].total_view ? news[0].total_view :"Not found"}</span></p>
+    </div>
+        
+
+  </div>
+
+      </div>
+
   </div>
 </div>
     `

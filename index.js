@@ -1,5 +1,5 @@
-const loadNews =async()=>{
-    const url=`https://openapi.programming-hero.com/api/news/category/02`
+const loadNews =async(id)=>{
+    const url=`https://openapi.programming-hero.com/api/news/category/${id}`
     const res =await fetch(url)
     const data =await res.json()
     displayNews(data.data)
@@ -9,7 +9,7 @@ const displayNews =(news)=>{
 console.log(news)
 
 const newsContainer =document.getElementById('news-container')
-
+newsContainer.textContent=''
 news.forEach(mynews => {
     console.log(mynews)
 
@@ -141,28 +141,28 @@ const displayCategories=(category)=>{
         categoryNews.innerHTML=`
         
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[0].category_name}</a>
+        <a onclick="loadNews('01')" class="nav-link active" href="#">${category[0].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[1].category_name}</a>
+        <a  onclick="loadNews('02')" class="nav-link active" href="#">${category[1].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[2].category_name}</a>
+        <a  onclick="loadNews('03')" class="nav-link active" href="#">${category[2].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[3].category_name}</a>
+        <a  onclick="loadNews('04')" class="nav-link active" href="#">${category[3].category_name}</a>
       </li>
         <li  class="nav-item px-4">
         <a class="nav-link active" href="#">${category[4].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[5].category_name}</a>
+        <a onclick="loadNews('05')" class="nav-link active" href="#">${category[5].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[6].category_name}</a>
+        <a onclick="loadNews('06')" class="nav-link active" href="#">${category[6].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[7].category_name}</a>
+        <a onclick="loadNews('07')"  class="nav-link active" href="#">${category[7].category_name}</a>
       </li>
         `
     });
@@ -171,4 +171,8 @@ const displayCategories=(category)=>{
 
 newsCategories()
 
-loadNews('');
+// loadNews('01');
+// loadNews('02');
+// loadNews('03');
+// loadNews('04');
+// loadNews('05');

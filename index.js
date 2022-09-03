@@ -1,8 +1,14 @@
 const loadNews =async(id)=>{
     const url=`https://openapi.programming-hero.com/api/news/category/${id}`
-    const res =await fetch(url)
+    
+    try{
+      const res =await fetch(url)
     const data =await res.json()
     displayNews(data.data)
+    }
+    catch(error){
+      console.log('show error',error)
+    }
 }
 
 const displayNews =(news)=>{
@@ -35,7 +41,13 @@ else{
 
 
 news.forEach(mynews => {
-    console.log(mynews)
+    console.log('mynews',mynews)
+
+    //tryinggggggggg//////// 
+    // console.log('view..',mynews.total_view) 
+    // mynews.total_view.sort((a,b)=>{
+    //   return b.propertyName -a.propertyName
+    // })
 
 const {title, thumbnail_url,details,total_view,_id}=mynews
 const {name,img} =mynews.author
@@ -105,6 +117,8 @@ const newsDetails =async(id)=>{
 
 const displayNewsDetails =(news)=>{
     console.log('mynews',news)
+
+    
 
     const modalBody =document.getElementById('modal-body')
     modalBody.innerHTML=`
@@ -215,9 +229,14 @@ const toggleSpinner =isLoading =>{
 
 newsCategories()
 
+//Most views 
+
+document.getElementById('most-views').addEventListener('click',function(){
+
+  
+})
 
 
 
 
-
-loadNews('08');
+loadNews('01');

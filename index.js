@@ -1,4 +1,5 @@
 const loadNews =async(id)=>{
+  toggleSpinner(true)
     const url=`https://openapi.programming-hero.com/api/news/category/${id}`
     
     try{
@@ -9,13 +10,19 @@ const loadNews =async(id)=>{
     catch(error){
       console.log('show error',error)
     }
+    
 }
 
 const displayNews =(news)=>{
+ 
 console.log(news)
 console.log('news Length', news.length)
 
-toggleSpinner(false)
+// Sort By View
+news.sort((a,b)=>{
+  return b.total_view - a.total_view;
+})
+
 const newsContainer =document.getElementById('news-container')
 newsContainer.textContent=''
 
@@ -31,24 +38,17 @@ newsField.innerHTML=`
 const noNews =document.getElementById('no-found-message')
 if(news.length === 0){
 noNews.classList.remove('d-none')
-// toggleSpinner(true)
+
 }
 else{
   noNews.classList.add('d-none')
-  // toggleSpinner(false)
+  
 }
-
-
 
 news.forEach(mynews => {
     console.log('mynews',mynews)
-    toggleSpinner(true)
-    //tryinggggggggg//////// 
-    // console.log('view..',mynews.total_view) 
-    // mynews.total_view.sort((a,b)=>{
-    //   return b.propertyName -a.propertyName
-    // })
-
+    
+    
 const {title, thumbnail_url,details,total_view,_id}=mynews
 const {name,img} =mynews.author
     const newsDiv =document.createElement('div')
@@ -72,10 +72,8 @@ const {name,img} =mynews.author
             </div>
             <div class="col-4">
                 <p>${name ? name :'not found'}</p>
-                
-            </div>
-            
-            
+   
+            </div> 
         </div>
         
     </div>
@@ -84,24 +82,21 @@ const {name,img} =mynews.author
         <div class="col d-row">
         <p><i class="fa-regular fa-eye"></i> <span>${total_view ? total_view :'not found'}</span></p>
     </div>
-        
-
   </div>
 
       </div>
     </div>
   </div>
   <div class=" "><button onclick="newsDetails('${_id}')" class="btn btn-primary px-3 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal">See Details</button></div>
-  
 
           </div>
 
-    
-
     `
     newsContainer.appendChild(newsDiv)
+    
   });
   
+  toggleSpinner(false)
 }
 
 
@@ -113,6 +108,7 @@ const newsDetails =async(id)=>{
    
 }
 
+//Modal details
 const displayNewsDetails =(news)=>{
     console.log('mynews',news)
 
@@ -131,34 +127,20 @@ const displayNewsDetails =(news)=>{
     <div class="col col-sm-12">
         <div class="row text-left">
             <div class="col-2">
-                <img src="${news[0].author.img}" class="  author"  alt="...">
+                <img src="${news[0].author.img}" class="author"  alt="...">
             </div>
             <div class="col-10" >
                 <p>${news[0].author.name ? news[0].author.name :'not found' }</p>
                 <p>${news[0].author.published_date ? news[0].author.published_date : 'not found'}</p>
                 <p><i class="fa-regular fa-eye"></i> <span>${news[0].total_view ? news[0].total_view :"Not found"}</span></p>
-            </div>
-            
-            
+            </div>   
         </div>
-        
     </div>
-    <div class="col">
-        <div class="row">
-        <div class="col ms-4 ps-5">
-        
-    </div>
-        
-
-  </div>
-
-      </div>
-
   </div>
 </div>
     `
 
-    toggleSpinner(true)
+    
 }
 
 
@@ -181,6 +163,7 @@ const displayCategories=(category)=>{
         console.log('newscategory',newscategory)
         
         const categoryNews =document.getElementById('news-category')
+        
         categoryNews.innerHTML=`
         
         <li  class="nav-item px-4">
@@ -208,9 +191,10 @@ const displayCategories=(category)=>{
         <a onclick="loadNews('08')"  class="nav-link active text-primary fw-semibold " href="#">${category[7].category_name}</a>
       </li>
         `
-    });
+        
+      });
+     
   
-   
 }
 // spinner
 const toggleSpinner =isLoading =>{
@@ -225,18 +209,5 @@ const toggleSpinner =isLoading =>{
 
   }
 }
-
-
 newsCategories()
-
-//Most views 
-
-document.getElementById('most-views').addEventListener('click',function(){
-
-  
-})
-
-
-
-
 loadNews('01');

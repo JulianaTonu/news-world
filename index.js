@@ -10,6 +10,16 @@ console.log(news)
 
 const newsContainer =document.getElementById('news-container')
 newsContainer.textContent=''
+
+//no message found
+const noNews =document.getElementById('no-found-message')
+if(news.length === 0){
+noNews.classList.remove('d-none')
+}
+else{
+  noNews.classList.add('d-none')
+
+}
 news.forEach(mynews => {
     console.log(mynews)
 
@@ -153,16 +163,16 @@ const displayCategories=(category)=>{
         <a  onclick="loadNews('04')" class="nav-link active" href="#">${category[3].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a class="nav-link active" href="#">${category[4].category_name}</a>
+        <a onclick="loadNews('05')" class="nav-link active" href="#">${category[4].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a onclick="loadNews('05')" class="nav-link active" href="#">${category[5].category_name}</a>
+        <a onclick="loadNews('06')" class="nav-link active" href="#">${category[5].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a onclick="loadNews('06')" class="nav-link active" href="#">${category[6].category_name}</a>
+        <a onclick="loadNews('07')" class="nav-link active" href="#">${category[6].category_name}</a>
       </li>
         <li  class="nav-item px-4">
-        <a onclick="loadNews('07')"  class="nav-link active" href="#">${category[7].category_name}</a>
+        <a onclick="loadNews('08')"  class="nav-link active" href="#">${category[7].category_name}</a>
       </li>
         `
     });
@@ -171,7 +181,7 @@ const displayCategories=(category)=>{
 
 newsCategories()
 
-loadNews('');
+loadNews('08');
 // loadNews('02');
 // loadNews('03');
 // loadNews('04');

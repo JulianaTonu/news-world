@@ -49,7 +49,7 @@ news.forEach(mynews => {
     console.log('mynews',mynews)
     
     
-const {title, thumbnail_url,details,total_view,_id}=mynews
+const {title, thumbnail_url,details,total_view,_id}= mynews
 const {name,img} =mynews.author
     const newsDiv =document.createElement('div')
     newsDiv.innerHTML =`
@@ -67,10 +67,10 @@ const {name,img} =mynews.author
         <div class="row">
     <div class="col ">
         <div class="row text-left">
-            <div class="col-2">
+            <div class="col-2 ">
                 <img src="${img}" class="  author"  alt="...">
             </div>
-            <div class="col-4">
+            <div class="col-4 ">
                 <p>${name ? name :'not found'}</p>
    
             </div> 
@@ -79,7 +79,7 @@ const {name,img} =mynews.author
     </div>
     <div class="col-4">
         <div class="row">
-        <div class="col d-row">
+        <div class="col  d-row">
         <p><i class="fa-regular fa-eye"></i> <span>${total_view ? total_view :'not found'}</span></p>
     </div>
   </div>
@@ -117,7 +117,7 @@ const displayNewsDetails =(news)=>{
     const modalBody =document.getElementById('modal-body')
     modalBody.innerHTML=`
     
-    <div class="card p-2" style="width: 30rem;">
+    <div class="card p-2 " style="width: 25rem;">
   <img src="${news[0].image_url}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">${news[0].title}</h5>

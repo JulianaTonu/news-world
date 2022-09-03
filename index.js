@@ -7,9 +7,18 @@ const loadNews =async(id)=>{
 
 const displayNews =(news)=>{
 console.log(news)
+console.log('news Length', news.length)
 
+toggleSpinner(true)
 const newsContainer =document.getElementById('news-container')
 newsContainer.textContent=''
+
+//news item
+
+const newsField =document.getElementById('news-item-field')
+const newsText=newsField.value 
+newsText.value =news.length
+console.log('please news', newsText.value)
 
 //no message found
 const noNews =document.getElementById('no-found-message')
@@ -75,8 +84,9 @@ const {name,published_date,img} =mynews.author
     `
     newsContainer.appendChild(newsDiv)
     
-    
-});
+  });
+
+
 
 }
 
@@ -131,6 +141,8 @@ const displayNewsDetails =(news)=>{
     `
 }
 
+
+
 //categories 
 
 const newsCategories =async()=>{
@@ -143,10 +155,11 @@ const newsCategories =async()=>{
 
 const displayCategories=(category)=>{
     console.log('category',category)
+    
 // const{category_name} =category
     category.forEach(newscategory => {
         console.log('newscategory',newscategory)
-
+        
         const categoryNews =document.getElementById('news-category')
         categoryNews.innerHTML=`
         
@@ -176,13 +189,27 @@ const displayCategories=(category)=>{
       </li>
         `
     });
+  
     
 }
+// spinner
+const toggleSpinner =isLoading =>{
+   
+  const loadingSpinner =document.getElementById('spinner')
 
+  if(isLoading){
+      loadingSpinner.classList.remove('d-none')
+  }
+  else{
+      loadingSpinner.classList.add('d-none')
+
+  }
+}
 newsCategories()
 
+
+
+
+
+
 loadNews('08');
-// loadNews('02');
-// loadNews('03');
-// loadNews('04');
-// loadNews('05');

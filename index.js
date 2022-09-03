@@ -71,7 +71,7 @@ const {name,img} =mynews.author
                 <img src="${img}" class="  author"  alt="...">
             </div>
             <div class="col-4">
-                <p>${name}</p>
+                <p>${name ? name :'not found'}</p>
                 
             </div>
             
@@ -82,7 +82,7 @@ const {name,img} =mynews.author
     <div class="col-4">
         <div class="row">
         <div class="col d-row">
-        <p><i class="fa-regular fa-eye"></i> <span>${total_view}</span></p>
+        <p><i class="fa-regular fa-eye"></i> <span>${total_view ? total_view :'not found'}</span></p>
     </div>
         
 
@@ -135,7 +135,7 @@ const displayNewsDetails =(news)=>{
             </div>
             <div class="col-10" >
                 <p>${news[0].author.name ? news[0].author.name :'not found' }</p>
-                <p>${news[0].author.published_date}</p>
+                <p>${news[0].author.published_date ? news[0].author.published_date : 'not found'}</p>
                 <p><i class="fa-regular fa-eye"></i> <span>${news[0].total_view ? news[0].total_view :"Not found"}</span></p>
             </div>
             

@@ -15,7 +15,7 @@ const displayNews =(news)=>{
 console.log(news)
 console.log('news Length', news.length)
 
-
+toggleSpinner(false)
 const newsContainer =document.getElementById('news-container')
 newsContainer.textContent=''
 
@@ -31,18 +31,18 @@ newsField.innerHTML=`
 const noNews =document.getElementById('no-found-message')
 if(news.length === 0){
 noNews.classList.remove('d-none')
-toggleSpinner(true)
+// toggleSpinner(true)
 }
 else{
   noNews.classList.add('d-none')
-  toggleSpinner(false)
+  // toggleSpinner(false)
 }
 
 
 
 news.forEach(mynews => {
     console.log('mynews',mynews)
-
+    toggleSpinner(true)
     //tryinggggggggg//////// 
     // console.log('view..',mynews.total_view) 
     // mynews.total_view.sort((a,b)=>{
@@ -100,12 +100,10 @@ const {name,img} =mynews.author
 
     `
     newsContainer.appendChild(newsDiv)
-    
   });
-
-
-
+  
 }
+
 
 const newsDetails =async(id)=>{
     const url=` https://openapi.programming-hero.com/api/news/${id}`
@@ -159,6 +157,8 @@ const displayNewsDetails =(news)=>{
   </div>
 </div>
     `
+
+    toggleSpinner(true)
 }
 
 
